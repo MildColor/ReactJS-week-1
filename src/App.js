@@ -1,8 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 
-// 구조 분해 할당 문법을 사용하면 이렇게도 할 수 있어요.
-function Child({ name = "기본이름" }) {
-  return <div>내 이름은 {name} 입니다. </div>;
-}
+const App = () => {
+  // 초기값을 0으로 둠
+  const [value, setValue] = useState(0);
 
-export default Child;
+  // 함수가 실행되면 초기값에 + 1
+  const plusHandler = (e) => {
+    setValue(value + 1);
+  };
+  // 함수가 실행되면 초깃값에 -1
+  const minusHandler = (e) => {
+    setValue(value - 1);
+  };
+
+  console.log(value);
+
+  return (
+    <div>
+      <div>{value}</div>
+      {/* click시 plusHandler함수 실행 */}
+      <button onClick={plusHandler}>+1</button>
+      {/* click시 minusHandler함수 실행 */}
+      <button onClick={minusHandler}>-1</button>
+    </div>
+  );
+};
+
+export default App;
