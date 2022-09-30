@@ -1,27 +1,46 @@
-import React, { useState } from "react";
+import React from "react";
 
-const App = () => {
-  // 초기값을 0으로 둠
-  const [value, setValue] = useState(0);
-
-  // 함수가 실행되면 초기값에 + 1
-  const plusHandler = (e) => {
-    setValue(value + 1);
+function Square({ users }) {
+  const squareStyle = {
+    width: "100px",
+    height: "100px",
+    border: "1px solid green",
+    borderRadius: "10px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   };
-  // 함수가 실행되면 초깃값에 -1
-  const minusHandler = (e) => {
-    setValue(value - 1);
-  };
-
-  console.log(value);
 
   return (
-    <div>
-      <div>{value}</div>
-      {/* click시 plusHandler함수 실행 */}
-      <button onClick={plusHandler}>+1</button>
-      {/* click시 minusHandler함수 실행 */}
-      <button onClick={minusHandler}>-1</button>
+    <div style={squareStyle}>
+      {users.age}살-{users.name}
+    </div>
+  );
+}
+
+const App = () => {
+  const style = {
+    padding: "100px",
+    display: "flex",
+    gap: "12px",
+  };
+
+  const users = [
+    { id: 1, age: 30, name: "송중기" },
+    { id: 2, age: 24, name: "송강" },
+    { id: 3, age: 21, name: "김유정" },
+    { id: 4, age: 29, name: "구교환" },
+  ];
+
+  return (
+    <div style={style}>
+      {users.map((users) => {
+        if (users.age >= 25) {
+          return <Square key={users.id} users={users} />;
+        } else {
+          return null;
+        }
+      })}
     </div>
   );
 };
