@@ -1,9 +1,20 @@
-// import [패키지명] from [경로] 이 형식으로 불러와요.
 import React from "react";
-const cat_name = "perl";
+import logo from "./logo.svg";
+import "./App.css";
+
 function App() {
-  // JSX에서 js값을 가져오려면 중괄호를 쓴다.
-  return <div>hello {cat_name}!</div>;
+  const number = 1;
+
+  return (
+    <div className="App">
+      <p>안녕하세요! 리액트 반입니다 :)</p>
+      {/* JSX 내에서 코드 주석은 이렇게 씁니다 :) */}
+      {/* 삼항 연산자를 사용했어요 */}
+      <p>
+        {number > 10 ? number + "은 10보다 크다" : number + "은 10보다 작다"}
+      </p>
+    </div>
+  );
 }
 
 export default App;
