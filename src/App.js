@@ -1,14 +1,8 @@
-// components/Child.js
-
 import React from "react";
 
-function Child({ name }) {
+// 구조 분해 할당 문법을 사용하면 이렇게도 할 수 있어요.
+function Child({ name = "기본이름" }) {
   return <div>내 이름은 {name} 입니다. </div>;
 }
-
-// 이렇게 설정합니다.
-Child.defaultProps = {
-  name: "기본 이름",
-};
 
 export default Child;
