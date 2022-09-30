@@ -1,23 +1,14 @@
-// src/App.js
+// components/Child.js
 
 import React from "react";
 
-function App() {
-  return <GrandFather />;
+function Child({ name }) {
+  return <div>내 이름은 {name} 입니다. </div>;
 }
 
-function GrandFather() {
-  return <Mother />;
-}
+// 이렇게 설정합니다.
+Child.defaultProps = {
+  name: "기본 이름",
+};
 
-function Mother() {
-  const name = "홍부인";
-  return <Child motherName={name} />; // 💡"props로 name을 전달했다."
-}
-
-function Child(props) {
-  console.log(props); // 이게 바로 props다.
-  return <div>연결 성공</div>;
-}
-
-export default App;
+export default Child;
