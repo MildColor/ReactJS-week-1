@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "./components/layout/Layout";
-function App() {
+function TodoList() {
   return <Layout />;
 }
 
-export default App;
+export default TodoList;
