@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+  margin-bottom: 50px;
+  font-size: 80px;
+  text-transform: uppercase;
+  text-shadow: 5px 5px 0px rgba(31, 38, 135, 0.37),
+    7px 7px 0px rgba(35, 40, 112, 0.37), 9px 9px 0px rgba(33, 37, 97, 0.37);
+}
