@@ -2,16 +2,48 @@ import React from "react";
 import "./style.css";
 import Todo from "../todo/Todo";
 
-function List() {
+//todos 객체배열을 상위 컴포넌트(Form)으로부터 받아옴
+function List({ todos, handleRemove, handleDone, btnText }) {
   return (
     <div className="list-container">
-      <h2>Working</h2>
+      <h2>Working...!</h2>
       <div className="list-wrapper">
-        <Todo></Todo>
+        {todos.map((todo) => {
+          if (todo.isDone === false) {
+            return (
+              <Todo
+                todos={todos}
+                todo={todo}
+                handleRemove={handleRemove}
+                handleDone={handleDone}
+                btnText={btnText}
+                key={todo.id}
+              ></Todo>
+            );
+          } else {
+            return null;
+          }
+        })}
       </div>
-      <h2>Done!</h2>
+
+      <h2>Done...!</h2>
       <div className="list-wrapper">
-        <Todo></Todo>
+        {todos.map((todo) => {
+          if (todo.isDone === true) {
+            return (
+              <Todo
+                todos={todos}
+                todo={todo}
+                handleRemove={handleRemove}
+                handleDone={handleDone}
+                btnText={btnText}
+                key={todo.id}
+              ></Todo>
+            );
+          } else {
+            return null;
+          }
+        })}
       </div>
     </div>
   );
