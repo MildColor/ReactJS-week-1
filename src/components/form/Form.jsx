@@ -51,7 +51,7 @@ function Form() {
   };
 
   const handleRemove = (id) => {
-    // filter를 이용해 삭제 기능을 구현했다.
+    // filter를 이용해 삭제
     // filter를 이용해서 handleRemove로 받아온 id값과 일치한지 않은 todo값들만 반환.
     // 즉 일치한 id를 가진 todo값은 반환되지 않은거
     setTodos((todos) => todos.filter((todo) => todo.id !== id));
@@ -59,13 +59,13 @@ function Form() {
 
   const handleDone = (id) => {
     // 데이터의 불변성을 지켜주기 위해 스프레드 문법으로 얕은 복사
+    // 값이 바뀌어도 같은 메모리 주소만 참조하기 때문에 복사를 통해서 메모리주소를 바꿔줘야한다.
     let dupArr = [...todos];
     let dupArr2 = [...todos];
 
     // false로 바꿀 값을 뺀 나머지 데이터들을 dupArr에 저장.
     dupArr.filter((dupArrTodo) => dupArrTodo.id !== id);
 
-    setTodos(dupArr);
     // 바꿀 값을 filter와 id를 이용해 구한 후, map으로 값을 원래 값을 뒤집어준다.
     dupArr2
       .filter((dupArr2Todo) => dupArr2Todo.id === id)

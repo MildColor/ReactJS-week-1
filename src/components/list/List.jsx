@@ -12,7 +12,6 @@ function List({ todos, handleRemove, handleDone }) {
           if (todo.isDone === false) {
             return (
               <Todo
-                todos={todos}
                 todo={todo}
                 handleRemove={handleRemove}
                 handleDone={handleDone}
@@ -31,7 +30,6 @@ function List({ todos, handleRemove, handleDone }) {
           if (todo.isDone === true) {
             return (
               <Todo
-                todos={todos}
                 todo={todo}
                 handleRemove={handleRemove}
                 handleDone={handleDone}
