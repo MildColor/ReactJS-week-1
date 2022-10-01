@@ -13,7 +13,6 @@ function Form() {
     body: "",
     isDone: false,
   });
-  const [btnText, setbtnText] = useState("완료");
 
   //inputs 객체의 title, body라는 속성명을 title, body라는 변수명으로 받을 것이다.
   const { title, body, id, isDone } = inputs;
@@ -59,12 +58,6 @@ function Form() {
   };
 
   const handleDone = (id) => {
-    if (btnText === "취소") {
-      setbtnText("완료");
-    } else {
-      setbtnText("취소");
-    }
-
     // 데이터의 불변성을 지켜주기 위해 스프레드 문법으로 얕은 복사
     let dupArr = [...todos];
     let dupArr2 = [...todos];
@@ -72,9 +65,7 @@ function Form() {
     // false로 바꿀 값을 뺀 나머지 데이터들을 dupArr에 저장.
     dupArr.filter((dupArrTodo) => dupArrTodo.id !== id);
 
-    // false를 바꿀 값을 뺀 나머지 값들로 바꿔준다.
     setTodos(dupArr);
-
     // 바꿀 값을 filter와 id를 이용해 구한 후, map으로 값을 원래 값을 뒤집어준다.
     dupArr2
       .filter((dupArr2Todo) => dupArr2Todo.id === id)
@@ -87,33 +78,29 @@ function Form() {
   return (
     <div>
       <div className="add-form">
-        <label htmlFor="">제목</label>
         <input
           onChange={onChange}
-          required
           type="text"
           name="title"
           className="title"
           value={title}
+          placeholder="제목"
+          required
         />
-        <label htmlFor="">내용</label>
+        <br />
         <input
           onChange={onChange}
-          required
           type="text"
           name="body"
           className="body"
           value={body}
+          placeholder="내용"
+          required
         />
-        <button onClick={handleClick}>추가하기</button>
+        <button onClick={handleClick}>ADD</button>
       </div>
 
-      <List
-        todos={todos}
-        handleRemove={handleRemove}
-        handleDone={handleDone}
-        btnText={btnText}
-      />
+      <List todos={todos} handleRemove={handleRemove} handleDone={handleDone} />
     </div>
   );
 }
