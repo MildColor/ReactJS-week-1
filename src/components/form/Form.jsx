@@ -36,6 +36,7 @@ function Form() {
 
   //클릭하면 todos배열에 현재 상태를 todo객체로 넣어준다.
   const handleClick = (e) => {
+    e.preventDefault();
     // 현재 inputs의 값들로 todo객체를 생성
     const todo = {
       id: id,
