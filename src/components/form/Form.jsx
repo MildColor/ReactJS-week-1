@@ -6,7 +6,7 @@ function Form() {
   // 만들어진 input 정보의 객체들을 넣어주기 위해 배열을 만들어줍니다.
   // 작성한 todo의 모음들
   const [todos, setTodos] = useState([]);
-  //배열의 구조 분해, inputs의 초기 title값과 body값은 ""
+  // inputs는 객체이고 아래와 같이 초기값을 설정해줌
   const [inputs, setInputs] = useState({
     id: 0,
     title: "",
@@ -14,31 +14,37 @@ function Form() {
     isDone: false,
   });
 
-  //inputs 객체의 title, body라는 속성명을 title, body라는 변수명으로 받을 것이다.
+  //객체의 구조분해 할당을 한다.
+  //inputs 객체의 키 목록을 다음과 같은 변수들로 할당.
   const { title, body, id, isDone } = inputs;
 
+  //input값들에 변화가 일어나면 감지
   const onChange = (e) => {
+    // 감지된 input의 value값과 name값을 구조분해할당으로 아래와 같은 이름의 변수로 지정
     const { value, name } = e.target;
 
     //이부분 이해가 잘안감. 구조 분해라고 아는데...
     setInputs({
-      //inputs 객체의 요소들을 spread문법으로 하나씩 변환
-      ...inputs,
-      [name]: value,
+      //inputs 객체의 속성들을 spread문법으로 하나씩 변환
+      //event에서 얻어온 값들로 다시 넣어준다.
+      //[...]은 객체의 property key값을 의미한다. [...]안에 name이라는 e.target에서 받아온 변수를 넣어주고, property value값에 e.target에서 받아온 value라는 변수를 넣어준다.
+      //=> title : 바뀐 value값 이 되게 되고, 이 값을 inputs 객체에서 title이라는 property key에 맞는 value 값으로 변환 시켜준다.
+      ...inputs, // 값을 수정할 객체를 넣어주고
+      [name]: value, // 바꿀 property key값과 value값을 넣어준다.
     });
   };
 
   //클릭하면 todos배열에 현재 상태를 todo객체로 넣어준다.
   const handleClick = (e) => {
     e.preventDefault();
-    // 현재 inputs, input값들을 todo객체로 생성
+    // 현재 inputs의 값들로 todo객체를 생성
     const todo = {
       id: id,
       title,
       body,
       isDone,
     };
-    // 만들어진 객체를 배열에 넣어준다.
+    // 만들어진 객체를 배열에 넣어준 후 새배열을 반환
     setTodos(todos.concat(todo));
 
     // 나머지 값들은 초기화 시키고 id값만 1증가시킨다.
@@ -71,7 +77,7 @@ function Form() {
       .filter((dupArr2Todo) => dupArr2Todo.id === id)
       .map((x) => (x.isDone = !x.isDone));
 
-    // 스프레드 연산자로 다시 합쳐준다.
+    // 스프레드 연산자로 배열을 다시 합쳐준다.
     setTodos(dupArr, ...dupArr2);
   };
 

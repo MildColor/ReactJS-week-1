@@ -7,7 +7,8 @@ function Layout() {
   return (
     <div className="layout">
       <Header></Header>
-      <Form></Form>
+      <Form> </Form>
+
     </div>
   );
 }
