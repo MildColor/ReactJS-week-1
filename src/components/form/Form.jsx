@@ -90,12 +90,14 @@ function Form() {
     setModalTodo(todo);
   };
 
-  const saveMod = (modifyInputs) => {
-    setTodos((todos) => todos.filter((todo) => todo.id !== modifyInputs.id));
-    console.log(todos);
+  const saveMod = (modifyInputs, id) => {
     modifyInputs.id = Math.floor(Math.random() * 1000);
     setTodos(todos.concat(modifyInputs));
+    setTodos((todos) => todos.filter((todo) => todo.id !== id));
     setModalOpen(false);
+
+    //왜 먼저 삭제하고 modifyInputs를 추가하면 안되었던것인가?
+    // 반대로 난수를 id로 주고, modifyInputs를 배열에 추가한후 삭제는 되는것인가?
   };
 
   return (

@@ -11,7 +11,7 @@ function Modal({ todo, handleRemove, handleDone, saveMod }) {
 
   // const [modifyTodo, setModifyTodo] = useState();
 
-  const { title, body, id, isDone } = modifyInputs;
+  const { title, body, id } = modifyInputs;
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -23,7 +23,7 @@ function Modal({ todo, handleRemove, handleDone, saveMod }) {
       <header>Modify Page</header>
       <input name="title" type="text" onChange={onChange} value={title} />
       <input name="body" type="text" onChange={onChange} value={body} />
-      <button onClick={() => saveMod(modifyInputs)}>완료</button>
+      <button onClick={() => saveMod(modifyInputs, id)}>완료</button>
       <button>취소</button>
     </div>
   );
