@@ -13,6 +13,9 @@ function Form() {
     body: "",
     isDone: false,
   });
+  // 모달창 노출 여부 state
+  const [openModal, setModalOpen] = useState(false);
+  // const [modalInputs, setModalInputs] = useState()
 
   //객체의 구조분해 할당을 한다.
   //inputs 객체의 키 목록을 다음과 같은 변수들로 할당.
@@ -81,6 +84,17 @@ function Form() {
     setTodos(dupArr, ...dupArr2);
   };
 
+  //수정하기 클릭시 값을 true로 바꿔줌
+  const handleModal = () => {
+    setModalOpen(true);
+  };
+
+  const saveMod = (modifyInputs) => {
+    setTodos((todos) => todos.filter((todo) => todo.id !== modifyInputs.id));
+    console.log(todos);
+    setModalOpen(false);
+  };
+
   return (
     <div>
       <div className="add-form">
@@ -106,7 +120,15 @@ function Form() {
         <button onClick={handleClick}>ADD</button>
       </div>
 
-      <List todos={todos} handleRemove={handleRemove} handleDone={handleDone} />
+      <List
+        todos={todos}
+        handleRemove={handleRemove}
+        handleDone={handleDone}
+        handleModal={handleModal}
+        openModal={openModal}
+        setModalOpen={setModalOpen}
+        saveMod={saveMod}
+      />
     </div>
   );
 }

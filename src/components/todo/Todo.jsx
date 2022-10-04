@@ -1,22 +1,40 @@
 import React from "react";
+import Modal from "../Modal/Modal";
 import "./style.css";
 
-function Todo({ todo, handleRemove, handleDone }) {
+function Todo({
+  todo,
+  handleRemove,
+  handleDone,
+  openModal,
+  handleModal,
+  setModalOpen,
+  saveMod,
+}) {
   //받은 todo의 false값을 바꿔주기 위해
-  let text = "";
+  let confirmText = "";
   if (todo.isDone === false) {
-    text = "완료";
+    confirmText = "완료";
   } else if (todo.isDone === true) {
-    text = "취소";
+    confirmText = "취소";
   }
+
   return (
     <div className="todo-container">
       <h2 className="h2-container">{todo.title}</h2>
       <div>{todo.body}</div>
       <div className="btn-box">
         <button onClick={() => handleRemove(todo.id)}>삭제하기</button>
-        <button onClick={() => handleDone(todo.id)}>{text}</button>
+        <button onClick={() => handleDone(todo.id)}>{confirmText}</button>
+        <button onClick={() => handleModal(todo.id)}>수정하기</button>
       </div>
+      {openModal && (
+        <Modal
+          todo={todo}
+          setModalOpen={setModalOpen}
+          saveMod={saveMod}
+        ></Modal>
+      )}
     </div>
   );
 }

@@ -3,7 +3,15 @@ import "./style.css";
 import Todo from "../todo/Todo";
 
 //todos 객체배열을 상위 컴포넌트(Form)으로부터 받아옴
-function List({ todos, handleRemove, handleDone }) {
+function List({
+  todos,
+  handleRemove,
+  handleDone,
+  setModalOpen,
+  handleModal,
+  openModal,
+  saveMod,
+}) {
   return (
     <div className="list-container">
       <h2>Working...!</h2>
@@ -16,6 +24,10 @@ function List({ todos, handleRemove, handleDone }) {
                 handleRemove={handleRemove}
                 handleDone={handleDone}
                 key={todo.id}
+                handleModal={handleModal}
+                setModalOpen={setModalOpen}
+                openModal={openModal}
+                saveMod={saveMod}
               ></Todo>
             );
           } else {
@@ -31,9 +43,13 @@ function List({ todos, handleRemove, handleDone }) {
             return (
               <Todo
                 todo={todo}
+                setModalOpen={setModalOpen}
                 handleRemove={handleRemove}
                 handleDone={handleDone}
+                handleModal={handleModal}
+                openModal={openModal}
                 key={todo.id}
+                saveMod={saveMod}
               ></Todo>
             );
           } else {

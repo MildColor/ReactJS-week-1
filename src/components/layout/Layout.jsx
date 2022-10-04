@@ -8,7 +8,6 @@ function Layout() {
     <div className="layout">
       <Header></Header>
       <Form> </Form>
-
     </div>
   );
 }
