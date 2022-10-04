@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import List from "../list/List";
 import "./style.css";
-import Modal from "../Modal/Modal";
+import Modal from "../modal/Modal";
 
 function Form() {
   // 만들어진 input 정보의 객체들을 넣어주기 위해 배열을 만들어줍니다.
@@ -83,6 +83,8 @@ function Form() {
 
     // 스프레드 연산자로 배열을 다시 합쳐준다.
     setTodos(dupArr, ...dupArr2);
+
+    //이렇게 할 필요없이 filter, map 메소드를 이용하면 새로운 배열을 반환
   };
 
   const handleModal = (todo) => {
