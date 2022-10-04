@@ -96,8 +96,13 @@ function Form() {
     setTodos((todos) => todos.filter((todo) => todo.id !== id));
     setModalOpen(false);
 
-    //왜 먼저 삭제하고 modifyInputs를 추가하면 안되었던것인가?
+    // 왜 먼저 삭제하고 modifyInputs를 추가하면 안되었던것인가?
     // 반대로 난수를 id로 주고, modifyInputs를 배열에 추가한후 삭제는 되는것인가?
+    // 불변성 문제라기엔 filter메소드가 새로운 배열을 반환하기 때문에 아닌것 같고...
+    //
+  };
+  const cancelModal = () => {
+    setModalOpen(false);
   };
 
   return (
@@ -107,7 +112,7 @@ function Form() {
           onChange={onChange}
           type="text"
           name="title"
-          className="title"
+          className="form-input title"
           value={title}
           placeholder="제목"
           required
@@ -117,12 +122,14 @@ function Form() {
           onChange={onChange}
           type="text"
           name="body"
-          className="body"
+          className="form-input body"
           value={body}
           placeholder="내용"
           required
         />
-        <button onClick={handleClick}>ADD</button>
+        <button className="form-btn" onClick={handleClick}>
+          ADD
+        </button>
       </div>
 
       {openModal && (
@@ -130,6 +137,7 @@ function Form() {
           handleModal={handleModal}
           todo={modalTodo}
           saveMod={saveMod}
+          cancelModal={cancelModal}
         ></Modal>
       )}
 
@@ -137,9 +145,9 @@ function Form() {
         todos={todos}
         handleRemove={handleRemove}
         handleDone={handleDone}
+        setModalOpen={setModalOpen}
         handleModal={handleModal}
         openModal={openModal}
-        setModalOpen={setModalOpen}
       />
     </div>
   );

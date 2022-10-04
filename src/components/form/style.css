@@ -16,7 +16,6 @@ input {
   backdrop-filter: blur(8.5px);
   -webkit-backdrop-filter: blur(8.5px);
   border: 1px solid rgba(255, 255, 255, 0.18);
-  color: rgba(255, 255, 255, 0.8);
 }
 
 input::placeholder {
@@ -24,8 +23,8 @@ input::placeholder {
   font-weight: 500;
 }
 
-button {
-  font-size: 15px;
+.form-btn {
+  font-size: 13px;
   margin-top: 15px;
   border-radius: 20px;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);

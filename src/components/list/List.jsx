@@ -10,7 +10,6 @@ function List({
   setModalOpen,
   handleModal,
   openModal,
-  saveMod,
 }) {
   return (
     <div className="list-container">
@@ -27,7 +26,6 @@ function List({
                 handleModal={handleModal}
                 setModalOpen={setModalOpen}
                 openModal={openModal}
-                saveMod={saveMod}
               ></Todo>
             );
           } else {
@@ -49,7 +47,6 @@ function List({
                 handleModal={handleModal}
                 openModal={openModal}
                 key={todo.id}
-                saveMod={saveMod}
               ></Todo>
             );
           } else {

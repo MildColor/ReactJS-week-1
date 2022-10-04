@@ -15,9 +15,15 @@ function Todo({ todo, handleRemove, handleDone, handleModal }) {
       <h2 className="h2-container">{todo.title}</h2>
       <div>{todo.body}</div>
       <div className="btn-box">
-        <button onClick={() => handleRemove(todo.id)}>삭제하기</button>
-        <button onClick={() => handleDone(todo.id)}>{confirmText}</button>
-        <button onClick={() => handleModal(todo)}>수정하기</button>
+        <button className="form-btn " onClick={() => handleRemove(todo.id)}>
+          삭제하기
+        </button>
+        <button className="form-btn " onClick={() => handleDone(todo.id)}>
+          {confirmText}
+        </button>
+        <button className="form-btn " onClick={() => handleModal(todo)}>
+          수정하기
+        </button>
       </div>
     </div>
   );
