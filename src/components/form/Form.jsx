@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import List from "../list/List";
 import "./style.css";
+import Modal from "../Modal/Modal";
 
 function Form() {
   // 만들어진 input 정보의 객체들을 넣어주기 위해 배열을 만들어줍니다.
@@ -15,7 +16,7 @@ function Form() {
   });
   // 모달창 노출 여부 state
   const [openModal, setModalOpen] = useState(false);
-  // const [modalInputs, setModalInputs] = useState()
+  const [modalTodo, setModalTodo] = useState();
 
   //객체의 구조분해 할당을 한다.
   //inputs 객체의 키 목록을 다음과 같은 변수들로 할당.
@@ -84,14 +85,16 @@ function Form() {
     setTodos(dupArr, ...dupArr2);
   };
 
-  //수정하기 클릭시 값을 true로 바꿔줌
-  const handleModal = () => {
+  const handleModal = (todo) => {
     setModalOpen(true);
+    setModalTodo(todo);
   };
 
   const saveMod = (modifyInputs) => {
     setTodos((todos) => todos.filter((todo) => todo.id !== modifyInputs.id));
     console.log(todos);
+    modifyInputs.id = Math.floor(Math.random() * 1000);
+    setTodos(todos.concat(modifyInputs));
     setModalOpen(false);
   };
 
@@ -120,6 +123,14 @@ function Form() {
         <button onClick={handleClick}>ADD</button>
       </div>
 
+      {openModal && (
+        <Modal
+          handleModal={handleModal}
+          todo={modalTodo}
+          saveMod={saveMod}
+        ></Modal>
+      )}
+
       <List
         todos={todos}
         handleRemove={handleRemove}
@@ -127,7 +138,6 @@ function Form() {
         handleModal={handleModal}
         openModal={openModal}
         setModalOpen={setModalOpen}
-        saveMod={saveMod}
       />
     </div>
   );

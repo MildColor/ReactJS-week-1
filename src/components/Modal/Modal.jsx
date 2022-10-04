@@ -3,15 +3,15 @@ import "./style.css";
 
 function Modal({ todo, handleRemove, handleDone, saveMod }) {
   const [modifyInputs, setModifyInputs] = useState({
-    modTitle: todo.title,
-    modBody: todo.body,
+    title: todo.title,
+    body: todo.body,
     id: todo.id,
     isDone: todo.isDone,
   });
 
   // const [modifyTodo, setModifyTodo] = useState();
 
-  const { modTitle, modBody, modId, modIsDone } = modifyInputs;
+  const { title, body, id, isDone } = modifyInputs;
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -21,8 +21,8 @@ function Modal({ todo, handleRemove, handleDone, saveMod }) {
   return (
     <div className="Modal-container">
       <header>Modify Page</header>
-      <input name="modTitle" type="text" onChange={onChange} value={modTitle} />
-      <input name="modBody" type="text" onChange={onChange} value={modBody} />
+      <input name="title" type="text" onChange={onChange} value={title} />
+      <input name="body" type="text" onChange={onChange} value={body} />
       <button onClick={() => saveMod(modifyInputs)}>완료</button>
       <button>취소</button>
     </div>
