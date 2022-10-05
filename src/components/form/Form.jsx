@@ -14,6 +14,7 @@ function Form() {
     body: "",
     isDone: false,
   });
+
   // 모달창 노출 여부 state
   const [openModal, setModalOpen] = useState(false);
   const [modalTodo, setModalTodo] = useState();
@@ -27,12 +28,7 @@ function Form() {
     // 감지된 input의 value값과 name값을 구조분해할당으로 아래와 같은 이름의 변수로 지정
     const { value, name } = e.target;
 
-    //이부분 이해가 잘안감. 구조 분해라고 아는데...
     setInputs({
-      //inputs 객체의 속성들을 spread문법으로 하나씩 변환
-      //event에서 얻어온 값들로 다시 넣어준다.
-      //[...]은 객체의 property key값을 의미한다. [...]안에 name이라는 e.target에서 받아온 변수를 넣어주고, property value값에 e.target에서 받아온 value라는 변수를 넣어준다.
-      //=> title : 바뀐 value값 이 되게 되고, 이 값을 inputs 객체에서 title이라는 property key에 맞는 value 값으로 변환 시켜준다.
       ...inputs, // 값을 수정할 객체를 넣어주고
       [name]: value, // 바꿀 property key값과 value값을 넣어준다.
     });
@@ -93,9 +89,9 @@ function Form() {
   };
 
   const saveMod = (modifyInputs, id) => {
+    setTodos((todos) => todos.filter((todo) => todo.id !== id));
     modifyInputs.id = Math.floor(Math.random() * 1000);
     setTodos(todos.concat(modifyInputs));
-    setTodos((todos) => todos.filter((todo) => todo.id !== id));
     setModalOpen(false);
 
     // 왜 먼저 삭제하고 modifyInputs를 추가하면 안되었던것인가?
@@ -136,7 +132,6 @@ function Form() {
 
       {openModal && (
         <Modal
-          handleModal={handleModal}
           todo={modalTodo}
           saveMod={saveMod}
           cancelModal={cancelModal}

@@ -1,4 +1,6 @@
 .layout {
+  display: flex;
+  flex-direction: column;
   max-width: 1200px;
   min-width: 800px;
   height: 100%;
