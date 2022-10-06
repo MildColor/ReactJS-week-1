@@ -1,32 +1,23 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
+// import useInput from "./useInputs";
 
-const Test = () => {
-  const [inputs, setInputs] = useState({
-    title: "",
-    body: "",
-  });
+// const Test = () => {
+//   const { title, body } = inputs;
 
-  const { title, body } = inputs;
+//   useInput(, onChangeHandler);
 
-  const onChangeHandler = (e) => {
-    const { name, value } = e.target;
+//   return (
+//     <div>
+//       <input
+//         type="text"
+//         name="title"
+//         value={title}
+//         onChange={onChangeHandler}
+//       />
+//       <input type="text" name="body" value={body} onChange={onChangeHandler} />
+//       <button>Press</button>
+//     </div>
+//   );
+// };
 
-    setInputs({ ...inputs, [name]: value });
-    console.log(inputs);
-  };
-
-  return (
-    <div>
-      <input
-        type="text"
-        name="title"
-        value={title}
-        onChange={onChangeHandler}
-      />
-      <input type="text" name="body" value={body} onChange={onChangeHandler} />
-      <button>Press</button>
-    </div>
-  );
-};
-
-export default Test;
+// export default Test;
